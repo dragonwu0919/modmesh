@@ -39,28 +39,41 @@ std::string TimeRegistry::detailed_report() const
         << std::setw(40) << total_call_count()
         << " function calls in " << total_time()
         << " seconds" << std::endl;
+    
     ostm
-        << std::endl
-        << std::setw(40) << "Function Name"
-        << std::setw(25) << "Call Count"
-        << std::setw(25) << "Total Time (s)"
-        << std::setw(25) << "Per Call (s)"
-        << std::setw(25) << "Cumulative Time (s)"
-        << std::setw(25) << "Per Call (s)"
         << std::endl;
+        
+    ostm
+        << std::setw(172) << std::setfill('-') <<std::endl << std::setfill(' ');
+        
+    ostm
+        << "|" << std::setw(40) << "Function Name" << "|" 
+        << std::setw(25) << "Call Count" << "|" 
+        << std::setw(25) << "Total Time (s)" << "|"
+        << std::setw(25) << "Per Call (s)" << "|"
+        << std::setw(25) << "Cumulative Time (s)" << "|"
+        << std::setw(25) << "Per Call (s)" << "|" << std::endl;
+        
+    ostm
+        << std::setw(172) << std::setfill('-') <<std::endl << std::setfill(' ');
+        
 
     /// Body
     for (auto it = m_entry.begin(); it != m_entry.end(); ++it)
     {
         ostm
-            << std::setw(40) << it->first
-            << std::setw(25) << it->second.count()
-            << std::setw(25) << it->second.time()
-            << std::setw(25) << it->second.time() / it->second.count()
-            << std::setw(25) << it->second.ctime()
-            << std::setw(25) << it->second.ctime() / it->second.count()
+            << "|" << std::setw(40) << it->first << "|"
+            << std::setw(25) << it->second.count() << "|"
+            << std::setw(25) << it->second.time() << "|"
+            << std::setw(25) << it->second.time() / it->second.count() << "|"
+            << std::setw(25) << it->second.ctime() << "|"
+            << std::setw(25) << it->second.ctime() / it->second.count() << "|"
             << std::endl;
     }
+
+    ostm
+        << std::setw(172) << std::setfill('-') <<std::endl << std::setfill(' ');
+
     return ostm.str();
 }
 
